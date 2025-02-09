@@ -1,0 +1,10 @@
+.RTdiv {
+    background-color: rgb(80, 255, 71);
+    max-width: fit-content;
+    margin: none;
+}
+
+.reg {
+    color: black;
+    background-color: purple;
+}

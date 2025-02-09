@@ -1,0 +1,9 @@
+
+  
+  th, td {
+    width: 50%; /* Set the width of the cells to be 50% of their parent */
+    text-align: center;
+    border: 1px solid #a19b95;
+    padding: 5px;
+  }
+  

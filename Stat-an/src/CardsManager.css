@@ -1,0 +1,13 @@
+.CM-wrapper {
+    width: 70%;
+    margin: none;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: none;
+    flex-direction: row;
+    /* background-color:blueviolet; */
+    justify-content: space-around;
+}

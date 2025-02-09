@@ -1,0 +1,16 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    width: 50%;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box; /* Ensure the input takes the full width of the cell */
+}
+
+  
