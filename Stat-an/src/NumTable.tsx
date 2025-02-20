@@ -16,6 +16,7 @@ const NumTable: React.FC<TableProps> = ({ headers,data }) => {
   const [expPts, setExpPts] = useState(0);
 
   const diceProbabilities: DiceProbabilities = {
+    // These are all possible combinations
     0: 0,        // just so i don't get NaN
     2: 1 / 36,   // 1 possible way (1,1)
     3: 2 / 36,   // 2 possible ways (1,2), (2,1)

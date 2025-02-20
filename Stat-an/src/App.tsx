@@ -39,8 +39,8 @@ function App() {
         <NavBar/>
 
         <main>
-          <CardsManager />
           <RollTracker />
+          <CardsManager />
         </main>
         
 

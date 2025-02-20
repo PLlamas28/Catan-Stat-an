@@ -17,6 +17,7 @@ const Card: React.FC<CardProps> = ({ initialName, id, onDelete}) => {
   const [citiesState, setCitiesState] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState('');
+  const [textColor, setTextColor] = useState('')
 
   
 
@@ -35,7 +36,7 @@ const Card: React.FC<CardProps> = ({ initialName, id, onDelete}) => {
     }
     console.log("enter pressed")
 
-    let elem = document.getElementById('1')!;
+    /* let elem = document.getElementById('1')!;
     let elemWidth = window.getComputedStyle(elem).getPropertyValue("width");
     console.log("Card 1 "+elemWidth);
 
@@ -45,7 +46,7 @@ const Card: React.FC<CardProps> = ({ initialName, id, onDelete}) => {
 
     let innercmdivVar = document.getElementById('mainincm')!
     let innercmdivVarWidth = window.getComputedStyle(innercmdivVar).getPropertyValue("width");
-    console.log("inner cmdivVar width "+ innercmdivVarWidth);
+    console.log("inner cmdivVar width "+ innercmdivVarWidth); */
 
 
   };
@@ -54,11 +55,13 @@ const Card: React.FC<CardProps> = ({ initialName, id, onDelete}) => {
     setIsEditing(false);
   };
 
-
-
   const updateCount = (setter: React.Dispatch<React.SetStateAction<number>>, change: number) => {
     setter((prevCount) => prevCount + change);
   };
+
+  useEffect(() => {
+    setTextColor(backgroundColor == "white" ? "black":"white");
+  },[backgroundColor])
 
   useEffect(() => {
     setPtsState(housesState + 2 * citiesState);
@@ -73,7 +76,7 @@ const Card: React.FC<CardProps> = ({ initialName, id, onDelete}) => {
 
 
   return (
-    <div className="Card" style={{backgroundColor:backgroundColor}} id={id.toString()}>
+    <div className="Card" style={{backgroundColor:backgroundColor, color:textColor}} id={id.toString()}>
 
       {isEditing ? (
 
