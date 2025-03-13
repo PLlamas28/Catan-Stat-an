@@ -4,6 +4,8 @@ import './NumTable.css';
 interface TableProps {
     headers: string[];
     data: string[][];
+    latestRoll: number;
+    triggerRoll: boolean;
 }
 
 type DiceProbabilities = {
@@ -11,9 +13,10 @@ type DiceProbabilities = {
   };
   
 
-const NumTable: React.FC<TableProps> = ({ headers,data }) => {
+const NumTable: React.FC<TableProps> = ({ headers, data, latestRoll, triggerRoll }) => {
   const [tableData, setTableData] = useState(data);
   const [expPts, setExpPts] = useState(0);
+  const [totResources, setTotResources] = useState(0);
 
   const diceProbabilities: DiceProbabilities = {
     // These are all possible combinations
@@ -38,10 +41,24 @@ const NumTable: React.FC<TableProps> = ({ headers,data }) => {
     setTableData(newData);
   };
 
+    useEffect(() => {
+      // console.log("hi");
+      const len = tableData.length;
+      for (let i = 0; i < len; i++){
+        // console.log("test: "+i);
+        if ((!isNaN(parseInt(tableData[i][0]))) && parseInt(tableData[i][0]) == latestRoll){
+          setTotResources((num) => num+parseInt(tableData[i][1]));
+          // console.log("Tot resources: " + totResources);
+        }
+      }
+    }, [triggerRoll])
+
+
   const addRow = () => {
     const newRow = Array(tableData[0].length).fill(''); // create a new row with empty cells
     setTableData([...tableData, newRow]);
   };
+
   useEffect(() => {
     setExpPts(0)
     tableData.map((row) => {
@@ -100,10 +117,12 @@ const NumTable: React.FC<TableProps> = ({ headers,data }) => {
 
         </tbody>
       </table>
-      <div>
-        Expected Resources per Turn: {expPts}
-      </div>
       <button onClick={addRow}>Add Row</button>
+      <div>
+        Expected Resources per Roll: {expPts}
+        <br />
+        Total Resources Gained: {totResources}
+      </div>
     </div>
   );
 };

@@ -5,7 +5,14 @@ import './RollTracker.css'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const RollTracker: React.FC = () => {
+// Define an interface for the Roll Tracker component props
+interface RTProps {
+    setLatestRoll: React.Dispatch<React.SetStateAction<number>>;
+    setTriggerRoll: React.Dispatch<React.SetStateAction<boolean>>;
+    
+}
+
+const RollTracker: React.FC<RTProps> = ({ setLatestRoll, setTriggerRoll }) => {
 
     const [rollArray, setRollArray] = useState([0,0,0,0,0,0,0,0,0,0,0]);
 
@@ -26,6 +33,8 @@ const RollTracker: React.FC = () => {
         const newNumbers = [...rollArray];
         newNumbers[index] += 1;
         setRollArray(newNumbers);
+        setLatestRoll(index+2);
+        setTriggerRoll(prev => !prev);
         //console.log(newNumbers[0]);
       };
 
@@ -70,7 +79,7 @@ const RollTracker: React.FC = () => {
             tooltip: {
                 callbacks: {
                   label: function (context: TooltipItem<'bar'>) {
-                    let label = context.dataIndex || '';
+                    // let label = context.dataIndex || '';
                     // if (label) {
                     //   label += ': ';
                     // }

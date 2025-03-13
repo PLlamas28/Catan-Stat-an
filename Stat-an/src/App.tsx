@@ -5,10 +5,12 @@ import './App.css'
 import CardsManager from './CardsManager.tsx'
 import RollTracker from './RollTracker.tsx'
 import NavBar from './NavBar.tsx'
-
+import React, { useState } from 'react';
 
 function App() {
-  // const [count, setCount] = useState(0)
+  
+  const [latestRollArg, setLatestRollarg] = useState(0);
+  const [triggerRoll, setTriggerRoll] = useState(true);
 
   return (
     <>
@@ -39,8 +41,14 @@ function App() {
         <NavBar/>
 
         <main>
-          <RollTracker />
-          <CardsManager />
+          <RollTracker
+            setLatestRoll={ setLatestRollarg }
+            setTriggerRoll={ setTriggerRoll }
+          />
+          <CardsManager
+            latestRoll={ latestRollArg }
+            triggerRoll = { triggerRoll }
+          />
         </main>
         
 

@@ -8,9 +8,11 @@ interface CardProps {
     initialName: string;
     onDelete: () => void;
     id: number;
+    latestRoll: number;
+    triggerRoll: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ initialName, id, onDelete}) => {
+const Card: React.FC<CardProps> = ({ initialName, id, onDelete, latestRoll, triggerRoll}) => {
   const [name, setName] = useState(initialName);
   const [ptsState, setPtsState] = useState(2);
   const [housesState, setHousesState] = useState(2);
@@ -112,7 +114,7 @@ const Card: React.FC<CardProps> = ({ initialName, id, onDelete}) => {
       <button onClick={() => updateCount(setCitiesState,1)} disabled = {citiesState == 4}>+</button>
       
       <div className="numTable">
-        <NumTable data={initialData} headers={headerData} />
+        <NumTable data={initialData} headers={headerData} latestRoll={latestRoll} triggerRoll={triggerRoll}/>
       </div>
 
       

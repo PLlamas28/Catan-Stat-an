@@ -1,8 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Card from './Card';
 import './CardsManager.css';
 
-const CardsManager: React.FC = () => {
+
+// Define an interface for the Cards Manager component props
+interface CMProps {
+    latestRoll: number;
+    triggerRoll: boolean;
+}
+
+const CardsManager: React.FC<CMProps> = ({ latestRoll, triggerRoll }) => {
     const [cards, setCards] = useState<number[]>([1, 2]);
   
     const addCard = () => {
@@ -18,7 +25,15 @@ const CardsManager: React.FC = () => {
       <div className='CM-wrapper' id='mainincm'>
         <section className='mainDiv' >
           {cards.map((id) => (
-            <Card key={id} id={id} initialName='Sample Name' onDelete={() => deleteCard(id)} />
+            <Card
+              key={id}
+              id={id}
+              initialName='Sample Name'
+              onDelete={() => deleteCard(id)}
+              latestRoll={latestRoll}
+              triggerRoll = {triggerRoll}
+              
+            />
           ))}
 
           
