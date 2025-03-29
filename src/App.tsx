@@ -5,7 +5,7 @@ import './App.css'
 import CardsManager from './CardsManager.tsx'
 import RollTracker from './RollTracker.tsx'
 import NavBar from './NavBar.tsx'
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function App() {
   
